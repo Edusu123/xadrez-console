@@ -2,12 +2,15 @@
 
 using System;
 
+using xadrez;
+
 namespace xadrez_console
 {
     class Tela
     {
         public static void ImprimirTabuleiro(Tabuleiro tab)
         {
+            Console.WriteLine();
             for(int i = 0; i < tab.Linhas; i++)
             {
                 Console.Write($"{8 - i} ");
@@ -38,6 +41,14 @@ namespace xadrez_console
                 Console.Write(peca);
                 Console.ForegroundColor = consoleColor;
             }
+        }
+
+        public static PosicaoXadrez LerPosicaoXadrez()
+        {
+            string s = Console.ReadLine();
+            char coluna = s[0];
+            int linha = int.Parse(s[1].ToString());
+            return new PosicaoXadrez(coluna, linha);
         }
     }
 }

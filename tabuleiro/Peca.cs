@@ -18,5 +18,14 @@
             Cor = cor;
             QtdMovimentos = 0;
         }
+
+        #region Métodos
+
+        public void IncrementarQtdeMovimentos()
+        {
+            QtdMovimentos++;
+        }
+
+        #endregion
     }
 }
