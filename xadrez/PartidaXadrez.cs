@@ -11,21 +11,16 @@ namespace xadrez
 
         public Tabuleiro Tabuleiro { get; private set; }
         public bool Terminada { get; private set; }
-
-        #endregion
-
-        #region Variáveis
-
-        private int _turno;
-        private Cor _jogadorAtual;
+        public int Turno { get; private set; }
+        public Cor JogadorAtual { get; private set; }
 
         #endregion
 
         public PartidaXadrez()
         {
             Tabuleiro = new Tabuleiro(8, 8);
-            _turno = 1;
-            _jogadorAtual = Cor.Branca;
+            Turno = 1;
+            JogadorAtual = Cor.Branca;
             Terminada = false;
             ColocarPecas();
         }
@@ -38,6 +33,14 @@ namespace xadrez
             p.IncrementarQtdeMovimentos();
             Peca pecaCapturada = Tabuleiro.RetirarPeca(destino);
             Tabuleiro.ColocarPeca(p, destino);
+        }
+
+        public void RealizaJogada(Posicao origem, Posicao destino)
+        {
+            ExecutaMovimento(origem, destino);
+            Turno++;
+            AlteraTurno();
+
         }
 
         #endregion
@@ -56,7 +59,11 @@ namespace xadrez
             Tabuleiro.ColocarPeca(new Torre(Tabuleiro, Cor.Preta), new PosicaoXadrez('c', 8).ToPosicao());
             Tabuleiro.ColocarPeca(new Rei(Tabuleiro, Cor.Preta), new PosicaoXadrez('d', 8).ToPosicao());
             Tabuleiro.ColocarPeca(new Torre(Tabuleiro, Cor.Preta), new PosicaoXadrez('e', 8).ToPosicao());
+        }
 
+        private void AlteraTurno()
+        {
+            JogadorAtual = JogadorAtual == Cor.Branca ? Cor.Preta : Cor.Branca;
         }
 
         #endregion
