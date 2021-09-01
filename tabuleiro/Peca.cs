@@ -1,6 +1,6 @@
 ﻿namespace tabuleiro
 {
-    class Peca
+    abstract class Peca
     {
         #region Propriedades
 
@@ -25,6 +25,12 @@
         {
             QtdMovimentos++;
         }
+
+        #endregion
+
+        #region Métodos Abstratos
+
+        public abstract bool[,] MovimentosPossiveis();
 
         #endregion
     }

@@ -11,6 +11,8 @@ namespace xadrez_console
         {
             try
             {
+                Console.ForegroundColor = ConsoleColor.White;
+
                 var partidaXadrez = new PartidaXadrez();
 
                 while (!partidaXadrez.Terminada)
@@ -20,7 +22,13 @@ namespace xadrez_console
 
                     Console.Write("\nOrigem: ");
                     Posicao origem = Tela.LerPosicaoXadrez().ToPosicao();
-                    Console.Write("Destino: ");
+
+                    bool[,] posicoesPossiveis = partidaXadrez.Tabuleiro.Peca(origem).MovimentosPossiveis();
+
+                    Console.Clear();
+                    Tela.ImprimirTabuleiro(partidaXadrez.Tabuleiro, posicoesPossiveis);
+
+                    Console.Write("\nDestino: ");
                     Posicao destino = Tela.LerPosicaoXadrez().ToPosicao();
 
                     partidaXadrez.ExecutaMovimento(origem, destino);
