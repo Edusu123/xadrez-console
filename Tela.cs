@@ -1,6 +1,7 @@
 ﻿using tabuleiro;
 
 using System;
+using System.Collections.Generic;
 
 using xadrez;
 
@@ -78,6 +79,36 @@ namespace xadrez_console
             char coluna = s[0];
             int linha = int.Parse(s[1].ToString());
             return new PosicaoXadrez(coluna, linha);
+        }
+
+        public static void ImprimirPartida(PartidaXadrez partida)
+        {
+            ImprimirTabuleiro(partida.Tabuleiro);
+            Console.WriteLine();
+            ImprimirPecasCapturadas(partida);
+            Console.WriteLine($"\nTurno: {partida.Turno}");
+            Console.WriteLine($"Aguardando jogada: {partida.JogadorAtual}");
+        }
+
+        public static void ImprimirPecasCapturadas(PartidaXadrez partida)
+        {
+            Console.WriteLine("Peças capturadas: ");
+            Console.Write("Brancas: ");
+            ImprimirConjunto(partida.PecasCapturadas(Cor.Branca));
+            Console.Write("Pretas: ");
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            ImprimirConjunto(partida.PecasCapturadas(Cor.Preta));
+            Console.ForegroundColor = ConsoleColor.White;
+        }
+
+        public static void ImprimirConjunto(HashSet<Peca> conjunto)
+        {
+            Console.Write("[");
+
+            foreach (Peca peca in conjunto)
+                Console.Write($"{peca} ");
+
+            Console.WriteLine("]");
         }
     }
 }
