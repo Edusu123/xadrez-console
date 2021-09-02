@@ -43,7 +43,7 @@ namespace xadrez
 
         }
 
-        public void validarPosicaoOrigem(Posicao pos)
+        public void ValidarPosicaoOrigem(Posicao pos)
         {
             if (Tabuleiro.Peca(pos) == null)
                 throw new TabuleiroException("Não existe peça na posição de origem escolhida!");
@@ -51,8 +51,14 @@ namespace xadrez
             if (JogadorAtual != Tabuleiro.Peca(pos).Cor)
                 throw new TabuleiroException("A peça de origem escolhida não é sua!");
 
-            if (!Tabuleiro.Peca(pos).existeMovientosPossiveis())
+            if (!Tabuleiro.Peca(pos).ExisteMovimentosPossiveis())
                 throw new TabuleiroException("Não há movimentos possíveis para a peça de origem escolhida!");
+        }
+
+        public void ValidarPosicaoDestino(Posicao origem, Posicao destino)
+        {
+            if (!Tabuleiro.Peca(origem).PodeMoverPara(destino))
+                throw new TabuleiroException("Posição de destino inválida!");
         }
 
         #endregion
