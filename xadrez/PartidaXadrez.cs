@@ -43,6 +43,18 @@ namespace xadrez
 
         }
 
+        public void validarPosicaoOrigem(Posicao pos)
+        {
+            if (Tabuleiro.Peca(pos) == null)
+                throw new TabuleiroException("Não existe peça na posição de origem escolhida!");
+
+            if (JogadorAtual != Tabuleiro.Peca(pos).Cor)
+                throw new TabuleiroException("A peça de origem escolhida não é sua!");
+
+            if (!Tabuleiro.Peca(pos).existeMovientosPossiveis())
+                throw new TabuleiroException("Não há movimentos possíveis para a peça de origem escolhida!");
+        }
+
         #endregion
 
         #region Funções

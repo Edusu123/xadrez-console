@@ -26,6 +26,21 @@
             QtdMovimentos++;
         }
 
+        public bool existeMovientosPossiveis()
+        {
+            bool[,] mat = MovimentosPossiveis();
+            for(int i = 0; i < Tab.Colunas; i++)
+            {
+                for(int j = 0; j < Tab.Linhas; j++)
+                {
+                    if (mat[i, j])
+                        return true;
+                }
+            }
+
+            return false;
+        }
+
         #endregion
 
         #region Métodos Abstratos

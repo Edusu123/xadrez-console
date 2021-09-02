@@ -17,23 +17,33 @@ namespace xadrez_console
 
                 while (!partidaXadrez.Terminada)
                 {
-                    Console.Clear();
-                    Tela.ImprimirTabuleiro(partidaXadrez.Tabuleiro);
-                    Console.WriteLine($"\nTurno: {partidaXadrez.Turno}");
-                    Console.WriteLine($"\nAguardando jogada: {partidaXadrez.JogadorAtual}");
+                    try
+                    {
+                        Console.Clear();
+                        Tela.ImprimirTabuleiro(partidaXadrez.Tabuleiro);
+                        Console.WriteLine($"\nTurno: {partidaXadrez.Turno}");
+                        Console.WriteLine($"\nAguardando jogada: {partidaXadrez.JogadorAtual}");
 
-                    Console.Write("\nOrigem: ");
-                    Posicao origem = Tela.LerPosicaoXadrez().ToPosicao();
+                        Console.Write("\nOrigem: ");
+                        Posicao origem = Tela.LerPosicaoXadrez().ToPosicao();
+                        partidaXadrez.validarPosicaoOrigem(origem);
 
-                    bool[,] posicoesPossiveis = partidaXadrez.Tabuleiro.Peca(origem).MovimentosPossiveis();
+                        bool[,] posicoesPossiveis = partidaXadrez.Tabuleiro.Peca(origem).MovimentosPossiveis();
 
-                    Console.Clear();
-                    Tela.ImprimirTabuleiro(partidaXadrez.Tabuleiro, posicoesPossiveis);
+                        Console.Clear();
+                        Tela.ImprimirTabuleiro(partidaXadrez.Tabuleiro, posicoesPossiveis);
 
-                    Console.Write("\nDestino: ");
-                    Posicao destino = Tela.LerPosicaoXadrez().ToPosicao();
+                        Console.Write("\nDestino: ");
+                        Posicao destino = Tela.LerPosicaoXadrez().ToPosicao();
 
-                    partidaXadrez.RealizaJogada(origem, destino);
+                        partidaXadrez.RealizaJogada(origem, destino);
+                    }
+                    catch(TabuleiroException ex)
+                    {
+                        Console.WriteLine(ex.Message);
+                        Console.ReadLine();
+                    }
+
                 }
 
                 Tela.ImprimirTabuleiro(partidaXadrez.Tabuleiro);
