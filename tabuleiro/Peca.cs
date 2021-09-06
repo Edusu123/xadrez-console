@@ -21,10 +21,9 @@
 
         #region Métodos
 
-        public void IncrementarQtdeMovimentos()
-        {
-            QtdMovimentos++;
-        }
+        public void DecrementarQtdeMovimentos() => QtdMovimentos--;
+
+        public void IncrementarQtdeMovimentos() => QtdMovimentos++;
 
         public bool ExisteMovimentosPossiveis()
         {
