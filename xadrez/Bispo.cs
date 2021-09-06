@@ -17,7 +17,7 @@ namespace xadrez
         {
             var mat = new bool[Tab.Linhas, Tab.Colunas];
 
-            Posicao pos = new Posicao(0, 0);
+            var pos = new Posicao(0, 0);
 
             // Noroeste
             pos.DefinirValores(Posicao.Linha - 1, Posicao.Coluna - 1);
