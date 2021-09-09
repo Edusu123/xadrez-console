@@ -28,7 +28,7 @@ namespace xadrez
                 if (Tab.Peca(pos) != null && Tab.Peca(pos).Cor != Cor)
                     break;
 
-                pos.DefinirValores(Posicao.Linha - 1, Posicao.Coluna - 1);
+                pos.DefinirValores(pos.Linha - 1, pos.Coluna - 1);
             }
 
             // Nordeste
@@ -40,7 +40,7 @@ namespace xadrez
                 if (Tab.Peca(pos) != null && Tab.Peca(pos).Cor != Cor)
                     break;
 
-                pos.DefinirValores(Posicao.Linha - 1, Posicao.Coluna + 1);
+                pos.DefinirValores(pos.Linha - 1, pos.Coluna + 1);
             }
 
             // Sudeste
@@ -52,7 +52,7 @@ namespace xadrez
                 if (Tab.Peca(pos) != null && Tab.Peca(pos).Cor != Cor)
                     break;
 
-                pos.DefinirValores(Posicao.Linha + 1, Posicao.Coluna + 1);
+                pos.DefinirValores(pos.Linha + 1, pos.Coluna + 1);
             }
 
             // Sudoeste
@@ -64,7 +64,7 @@ namespace xadrez
                 if (Tab.Peca(pos) != null && Tab.Peca(pos).Cor != Cor)
                     break;
 
-                pos.DefinirValores(Posicao.Linha + 1, Posicao.Coluna - 1);
+                pos.DefinirValores(pos.Linha + 1, pos.Coluna - 1);
             }
 
             return mat;
