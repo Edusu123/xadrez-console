@@ -149,6 +149,21 @@ namespace xadrez
                 throw new TabuleiroException("Você não pode se colocar em xeque!");
             }
 
+            Peca p = Tabuleiro.Peca(destino);
+
+            // # jogada especial promoção
+            if(p is Peao)
+            {
+                if((p.Cor == Cor.Branca && destino.Linha == 0) || (p.Cor == Cor.Preta && destino.Linha == 7))
+                {
+                    p = Tabuleiro.RetirarPeca(destino);
+                    _pecas.Remove(p);
+                    Peca dama = new Dama(Tabuleiro, p.Cor);
+                    Tabuleiro.ColocarPeca(dama, destino);
+                    _pecas.Add(dama);
+                }
+            }
+
             if (EstaEmXeque(Adversario(JogadorAtual)))
                 Xeque = true;
             else
@@ -161,8 +176,6 @@ namespace xadrez
                 Turno++;
                 AlteraTurno();
             }
-
-            Peca p = Tabuleiro.Peca(destino);
 
             // #jogada especial en passant
             if (p is Peao && (destino.Linha == origem.Linha - 2 || destino.Linha == origem.Linha + 2))
@@ -301,7 +314,7 @@ namespace xadrez
             ColocarNovaPeca('g', 2, new Peao(Tabuleiro, Cor.Branca, this));
             ColocarNovaPeca('h', 2, new Peao(Tabuleiro, Cor.Branca, this));
 
-            //Colocando as peças brancas
+            //Colocando as peças pretas
             ColocarNovaPeca('a', 8, new Torre(Tabuleiro, Cor.Preta));
             ColocarNovaPeca('b', 8, new Cavalo(Tabuleiro, Cor.Preta));
             ColocarNovaPeca('c', 8, new Bispo(Tabuleiro, Cor.Preta));
@@ -311,7 +324,7 @@ namespace xadrez
             ColocarNovaPeca('g', 8, new Cavalo(Tabuleiro, Cor.Preta));
             ColocarNovaPeca('h', 8, new Torre(Tabuleiro, Cor.Preta));
 
-            // Colocando os peões brancos
+            // Colocando os peões pretos
             ColocarNovaPeca('a', 7, new Peao(Tabuleiro, Cor.Preta, this));
             ColocarNovaPeca('b', 7, new Peao(Tabuleiro, Cor.Preta, this));
             ColocarNovaPeca('c', 7, new Peao(Tabuleiro, Cor.Preta, this));
